@@ -1,6 +1,2 @@
 build/obj
 .vscode
-github.sh
-linker.ld
-*.bin
-*.iso
