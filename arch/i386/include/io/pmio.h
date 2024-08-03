@@ -4,7 +4,6 @@
 #include <stdint.h>
 #include <string.h>
 
-
 #define PIC_MASTER_CMD 0x20
 #define PIC_MASTER_DAT 0x21
 #define PIC_SLAVE_CMD  0xA0
