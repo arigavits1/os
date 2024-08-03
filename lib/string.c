@@ -1,5 +1,4 @@
 #include <string.h>
-#define MAX(x,y) ((x>y)?x:y)
 
 size_t strlen(const char* str)
 {
@@ -27,6 +26,36 @@ int strcmp(const char* str1, const char* str2)
     return 0;
 }
 
+void itoa(int num, char* result)
+{
+    if (num == 0)
+    {
+        result[0] = '0';
+        return;
+    }
+
+    bool negative = false;
+    if (num < 0)
+    {
+        num = -num;
+        result[0] = '-';
+        result++;
+        negative = true;
+    }
+
+    size_t count = intlen(num);
+
+    for (size_t i = 0; i < count; i++)
+    {
+        result[count - i - 1] = (num % 10) + '0';
+        num /= 10;
+    }
+
+    if (negative)
+    {
+        result--;
+    }            
+}
 
 void* memset(void* bufptr, int value, size_t size)
 {

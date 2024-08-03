@@ -49,37 +49,12 @@ int printf(const char* restrict format, ...)
         {
             int num = va_arg(parameters, int);
 
-            if (num == 0)
-            {
-                num = '0';
-                putchar(num);
-                written++;
-                continue;
-            }
-
-            if (num < 0)
-            {
-                num = -num;
-                putchar('-');
-                written++;
-            }
-
-            int temp_num = num;
-            size_t count = 0;
-            while (temp_num > 0)
-            {
-                temp_num /= 10;
-                count++;
-            }
-            char str[count];
-            for (size_t i = 0; i < count; i++)
-            {
-                str[count - i - 1] = (num % 10) + 48;
-                num /= 10;
-            }
+            char str[intlen(num) + 2];
+            itoa(num, str);
+            size_t len = strlen(str);
             
-            print(str, count);
-            written += count;
+            print(str, len);
+            written += len;
         }
         else
         {

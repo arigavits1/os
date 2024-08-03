@@ -5,7 +5,7 @@ void kernel_main()
 {
     const char* k = "kernel";
     char c = 'k';
-    int num = -10123;
+    int num = -2147483647;
     terminal_writestring("Hello, kernel world\n");
     terminal_writestring("More text\n");
     print("Hello World\n", strlen("Hello World\n"));
