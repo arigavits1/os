@@ -7,14 +7,13 @@ int putchar(int ic)
     return ic;
 }
 
-bool print(const char* str, size_t len)
+void print(const char* str, size_t len)
 {
     const unsigned char* bytes = (const unsigned char*)str;
     for (size_t i = 0; i < len; i++)
     {
         putchar(bytes[i]);
     }
-    return true;
 }
 
 int printf(const char* restrict format, ...)
@@ -45,6 +44,42 @@ int printf(const char* restrict format, ...)
             int ic = va_arg(parameters, int);
             putchar(ic);
             written++;
+        }
+        else if (format[i] == 'd')
+        {
+            int num = va_arg(parameters, int);
+
+            if (num == 0)
+            {
+                num = '0';
+                putchar(num);
+                written++;
+                continue;
+            }
+
+            if (num < 0)
+            {
+                num = -num;
+                putchar('-');
+                written++;
+            }
+
+            int temp_num = num;
+            size_t count = 0;
+            while (temp_num > 0)
+            {
+                temp_num /= 10;
+                count++;
+            }
+            char str[count];
+            for (size_t i = 0; i < count; i++)
+            {
+                str[count - i - 1] = (num % 10) + 48;
+                num /= 10;
+            }
+            
+            print(str, count);
+            written += count;
         }
         else
         {
